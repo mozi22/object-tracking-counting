@@ -15,7 +15,7 @@ from shapely.geometry.polygon import Polygon
 import csv
 class Sort:
 
-  def __init__(self, tracker_settings, max_age=5, min_hits=3 ):
+  def __init__(self, polygons, max_age=5, min_hits=3 ):
     """
     Sets key parameters for SORT
     """
@@ -24,8 +24,7 @@ class Sort:
     self.trackers = []
     self.frame_count = 0
     self.trackerids = 0
-    self.tracker_settings = tracker_settings
-    self.areas = self.tracker_settings.areas
+    self.areas = polygons
 
     # for area_id, area in enumerate(self.areas):
     #   polygon = self.denormalize_polygon(area.polygon, width, height)
