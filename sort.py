@@ -4,15 +4,12 @@ As implemented in https://github.com/abewley/sort but with some modifications
 
 from __future__ import print_function
 import numpy as np
-import cv2
 from kalman_tracker import KalmanBoxTracker
-from correlation_tracker import CorrelationTracker
 from data_association import associate_detections_to_trackers
-import scipy.misc
 import feature_matching as fm
 from shapely.geometry import Point
-from shapely.geometry.polygon import Polygon
 import csv
+
 class Sort:
 
   def __init__(self, polygons, max_age=5, min_hits=3 ):
