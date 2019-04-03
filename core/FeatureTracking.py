@@ -50,7 +50,7 @@ class FeatureTracking:
                     not area.polygon.contains(obj.location_history[4]):
                     # the first time, this person was detected inside and now he is outside.
                     area.outside += 1
-                    self.update_counter(area.counters, area.interest, '-')
+                    # self.update_counter(area.counters, area.interest, '-')
                     return 'Out'
                 elif not area.polygon.contains(obj.location_history[0]) and \
                     area.polygon.contains(obj.location_history[1]) and \
@@ -61,7 +61,7 @@ class FeatureTracking:
                     self.update_counter(area.counters, area.interest, '+')
                     # the first time, this person was detected outside and now he is inside.
                     area.inside += 1
-                    imsave('mozi.jpg',self.get_sub_frame_using_bounding_box_results(obj.location_history[4].x,obj.location_history[4].y,obj.bounding_box[0],obj.bounding_box[1]))
+                    # imsave('mozi.jpg',self.get_sub_frame_using_bounding_box_results(obj.location_history[4].x,obj.location_history[4].y,obj.bounding_box[0],obj.bounding_box[1]))
                     return 'In'
         except:
             pass
@@ -310,11 +310,10 @@ class FeatureTracking:
                         self.change_area_count(obj, area)
                 else:
                     self.is_inside(obj, area)
-            # if area.name == 'pink_cross_line':
-            #     print('Name =', area.name, 'Inside =', area.inside, 'Outside =', area.outside, 'Counters =', area.counters)
+            print('Name =', area.name, 'Inside =', area.inside, 'Outside =', area.outside, 'Counters =', area.counters)
 
         # print(self.areas)
 
-        return self.areas
+        return self.areas, self.known_objects
 
 

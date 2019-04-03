@@ -14,6 +14,7 @@ sys.path.append(samples_directory)
 
 video_file = samples_directory + '/vid1.MOV'
 video_capture = cv2.VideoCapture(video_file)
+fps = video_capture.get(cv2.CAP_PROP_FPS)
 
 img_size_reduction_proportion = 0.7
 
@@ -28,6 +29,10 @@ tracker = FeatureTracking(areas)
 paused = False
 
 while True:
+
+
+
+
     key = cv2.waitKey(1) & 0xFF
 
     if key == ord('p'):
@@ -47,13 +52,15 @@ while True:
     detection_results = objDet.run(frame)
     detection_results = utils.filter_results(detection_results)
 
-    tracking_results = tracker.run(detection_results,
-                                              frame,
-                                              frame.shape[1],
-                                              frame.shape[0],
-                                              time.time())
+    tracking_results, tracked_objects = tracker.run(detection_results,
+                                                                      frame,
+                                                                      frame.shape[1],
+                                                                      frame.shape[0],
+                                                                      time.time())
 
-    frame = utils.draw_detected_objects(frame, detection_results)
+    print(len(tracked_objects))
+    # frame = utils.draw_detected_objects(frame, detection_results)
+    # frame = utils.draw_tracked_objects(frame, tracked_objects)
     frame = utils.draw_areas_of_interest(frame, areas)
     cv2.imshow('', frame)
 
