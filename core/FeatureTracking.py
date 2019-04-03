@@ -3,6 +3,7 @@ from shapely.geometry import Point
 from shapely.geometry.polygon import Polygon
 import pandas as pd
 import numpy as np
+import csv
 from core.FeatureTrackingObject import FeatureTrackingObject
 class FeatureTracking:
 
@@ -43,8 +44,8 @@ class FeatureTracking:
         try:
             if len(obj.location_history) > 3:
                 if  area.polygon.contains(obj.location_history[0]) and \
-                    not area.polygon.contains(obj.location_history[1]) and \
-                    not area.polygon.contains(obj.location_history[2]) and \
+                    area.polygon.contains(obj.location_history[1]) and \
+                    area.polygon.contains(obj.location_history[2]) and \
                     not area.polygon.contains(obj.location_history[3]) and \
                     not area.polygon.contains(obj.location_history[4]):
                     # the first time, this person was detected inside and now he is outside.
@@ -52,18 +53,22 @@ class FeatureTracking:
                     # self.update_counter(area.counters, area.interest, '-')
                     return 'Out'
                 elif not area.polygon.contains(obj.location_history[0]) and \
-                    area.polygon.contains(obj.location_history[1]) and \
-                    area.polygon.contains(obj.location_history[2]) and \
+                    not area.polygon.contains(obj.location_history[1]) and \
+                    not area.polygon.contains(obj.location_history[2]) and \
                     area.polygon.contains(obj.location_history[3]) and \
                     area.polygon.contains(obj.location_history[4]):
 
-                    self.update_counter(area.counters, area.interest, '+')
+                    # self.update_counter(area.counters, area.interest, '+')
                     # the first time, this person was detected outside and now he is inside.
                     area.inside += 1
                     # imsave('mozi.jpg',self.get_sub_frame_using_bounding_box_results(obj.location_history[4].x,obj.location_history[4].y,obj.bounding_box[0],obj.bounding_box[1]))
                     return 'In'
         except:
             pass
+    def write_csv(self, params):
+        with open('booleans.csv', mode='a') as frames_file:
+            frame_writer = csv.writer(frames_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            frame_writer.writerow(params)
 
     def update_counter(self, counters, name, suff):
         counter = name + ' ' + suff

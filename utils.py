@@ -6,12 +6,12 @@ import cv2
 def get_areas():
     areas = list()
 
-    dm1 = DotMap(name='pink_cross_line', closed=False, enabled=True, polygon=Polygon([(989, 330), (489, 316), (0, 755), (1104, 755)]),
-           color=[255, 0, 255], inside=0, outside=0)
+    # dm1 = DotMap(name='pink_cross_line', closed=False, enabled=True, polygon=Polygon([(989, 350), (489, 336), (0, 755), (1104, 755)]),
+    #        color=[255, 0, 255], inside=0, outside=0)
 
     # # cross line area
-    # dm1 = DotMap(name='pink_cross_line', closed=False, enabled=True, polygon=Polygon([(0, 508), (0, 352), (720, 471), (508, 605)]),
-    #        color=[255, 0, 255], inside=0, outside=0)
+    dm1 = DotMap(name='pink_cross_line', closed=False, enabled=True, polygon=Polygon([(0, 508), (0, 352), (720, 471), (508, 605)]),
+           color=[255, 0, 255], inside=0, outside=0)
 
     # AOI 1
     dm2 = DotMap(name='red_closed', closed=True, enabled=False, polygon=Polygon([(516, 605), (728, 471), (1113, 436), (1148, 651)]),

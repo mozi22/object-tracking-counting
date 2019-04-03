@@ -12,7 +12,8 @@ samples_directory = root + '/samples' # Directory for test data
 sys.path.append(root)
 sys.path.append(samples_directory)
 
-video_file = samples_directory + '/short_vdos/dining_entrance/test_case1.mp4'
+# video_file = samples_directory + '/short_vdos/dining_entrance/test_case1.mp4'
+video_file = samples_directory + '/vid1.MOV'
 video_capture = cv2.VideoCapture(video_file)
 video_capture.set(cv2.CAP_PROP_FPS, 5)
 fps = video_capture.get(cv2.CAP_PROP_FPS)
