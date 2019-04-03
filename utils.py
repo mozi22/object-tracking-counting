@@ -10,7 +10,11 @@ def get_areas():
     #        color=[255, 0, 255], inside=0, outside=0)
 
     # # cross line area
-    dm1 = DotMap(name='pink_cross_line', closed=False, enabled=True, polygon=Polygon([(0, 580), (0, 252), (720, 441), (508, 555)]),
+    # good for bike count
+    # dm1 = DotMap(name='pink_cross_line', closed=False, enabled=True, polygon=Polygon([(0, 580), (0, 252), (750, 441), (588, 605)]),
+    #        color=[255, 0, 255], inside=0, outside=0)
+
+    dm1 = DotMap(name='pink_cross_line', closed=False, enabled=True, polygon=Polygon([(0, 580), (0, 252), (750, 441), (588, 605)]),
            color=[255, 0, 255], inside=0, outside=0)
 
     # AOI 1

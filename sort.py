@@ -34,26 +34,32 @@ class Sort:
 
   # for closed areas
   def is_inside(self, obj, area):
-    try:
+
       if len(obj.location_history) > self.keep_history - 1:
-          if  area.polygon.contains(obj.location_history[1]) and \
-            not area.polygon.contains(obj.location_history[2]) and \
+        if  area.polygon.contains(obj.location_history[0]) and \
+            area.polygon.contains(obj.location_history[1]) and \
+            area.polygon.contains(obj.location_history[2]) and \
             not area.polygon.contains(obj.location_history[3]) and \
             not area.polygon.contains(obj.location_history[4]):
             # the first time, this person was detected inside and now he is outside.
             area.outside += 1
             self.update_counter(area.counters, area.interest, obj.obj_type + '-')
             return 'Out'
-          elif not area.polygon.contains(obj.location_history[1]) and \
-            area.polygon.contains(obj.location_history[2]) and \
+
+        elif not area.polygon.contains(obj.location_history[0]) and \
+            not area.polygon.contains(obj.location_history[1]) and \
+            not area.polygon.contains(obj.location_history[2]) and \
             area.polygon.contains(obj.location_history[3]) and \
             area.polygon.contains(obj.location_history[4]):
             # the first time, this person was detected outside and now he is inside.
             area.inside += 1
             self.update_counter(area.counters, area.interest, obj.obj_type + ' +')
             return 'In'
-    except:
-        pass
+        try:
+            if len(obj.location_history) > self.keep_history - 1:
+                pass
+        except:
+            pass
 
   def update_counter(self, counters, name, suff):
       counter = name + ' ' + suff
