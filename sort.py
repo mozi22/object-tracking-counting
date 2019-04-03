@@ -42,7 +42,7 @@ class Sort:
             not area.polygon.contains(obj.location_history[4]):
             # the first time, this person was detected inside and now he is outside.
             area.outside += 1
-            self.update_counter(area.counters, area.interest, area.id  + '-')
+            self.update_counter(area.counters, area.interest, obj.obj_type + '-')
             return 'Out'
           elif not area.polygon.contains(obj.location_history[1]) and \
             area.polygon.contains(obj.location_history[2]) and \
@@ -50,7 +50,7 @@ class Sort:
             area.polygon.contains(obj.location_history[4]):
             # the first time, this person was detected outside and now he is inside.
             area.inside += 1
-            self.update_counter(area.counters, area.interest, area.id  + ' +')
+            self.update_counter(area.counters, area.interest, obj.obj_type + ' +')
             return 'In'
     except:
         pass
@@ -104,11 +104,17 @@ class Sort:
     NOTE: The number of objects returned may differ from the number of detections provided.
     """
 
-    detections = np.empty((0, 5))
+    detections = np.empty((0, 6))
 
     for obj, score, bounds in dets:
         x, y, w, h = bounds
-        detections = np.vstack((detections, (int(x - w / 2), int(y - h / 2), int(x + w / 2), int(y + h / 2), score)))
+
+        if obj.decode('utf-8') == 'person':
+            name = 0
+        else:
+            name = 1
+
+        detections = np.vstack((detections, (int(x - w / 2), int(y - h / 2), int(x + w / 2), int(y + h / 2), score, name)))
 
     dets = detections
 
@@ -151,7 +157,7 @@ class Sort:
                                      dets[i][2],
                                      dets[i][3],
                                      img)
-        self.trackers.append(KalmanBoxTracker(dets[i,:], features))
+        self.trackers.append(KalmanBoxTracker(dets[i,:], features, dets[i,5]))
 
     i = len(self.trackers)
 
@@ -197,7 +203,7 @@ class Sort:
                     if len(self.trackers) > 0:
                         self.trackers.pop(i)
 
-        print('Name =', area.name, 'Inside =', area.inside, 'Outside =', area.outside)
+        print('Name =', area.name, 'Inside =', area.inside, 'Outside =', area.outside, 'Counters =', area.counters)
 
     if(len(ret)>0):
       return self.areas, self.trackers

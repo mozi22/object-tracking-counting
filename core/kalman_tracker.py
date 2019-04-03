@@ -12,7 +12,7 @@ class KalmanBoxTracker(object):
   This class represents the internal state of individual tracked objects observed as bbox.
   """
   count = 0
-  def __init__(self, bbox, features):
+  def __init__(self, bbox, features, obj_type):
 
     """
     Initialises a tracker using initial bounding box.
@@ -22,6 +22,14 @@ class KalmanBoxTracker(object):
     self.history_limit = 0
     self.location_history = []
     self.last_features = features
+
+    if obj_type == 0:
+        obj_type = 'person'
+    else:
+        obj_type = 'bicycle'
+
+
+    self.obj_type = obj_type
 
     #define constant velocity model
 
