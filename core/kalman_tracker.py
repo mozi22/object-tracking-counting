@@ -3,8 +3,8 @@ As implemented in https://github.com/abewley/sort but with some modifications
 """
 
 import numpy as np
-from filterpy.kalman import KalmanFilter
 
+from filterpy.kalman import KalmanFilter
 
 '''Motion Model'''
 class KalmanBoxTracker(object):
@@ -12,11 +12,19 @@ class KalmanBoxTracker(object):
   This class represents the internal state of individual tracked objects observed as bbox.
   """
   count = 0
-  def __init__(self,bbox,img=None):
+  def __init__(self, bbox, features):
+
     """
     Initialises a tracker using initial bounding box.
     """
+
+    # helps in identifying how many old locations we're remembering
+    self.history_limit = 0
+    self.location_history = []
+    self.last_features = features
+
     #define constant velocity model
+
     self.kf = KalmanFilter(dim_x=7, dim_z=4)
     self.kf.F = np.array([[1,0,0,0,1,0,0],[0,1,0,0,0,1,0],[0,0,1,0,0,0,1],[0,0,0,1,0,0,0],  [0,0,0,0,1,0,0],[0,0,0,0,0,1,0],[0,0,0,0,0,0,1]])
     self.kf.H = np.array([[1,0,0,0,0,0,0],[0,1,0,0,0,0,0],[0,0,1,0,0,0,0],[0,0,0,1,0,0,0]])
@@ -36,20 +44,24 @@ class KalmanBoxTracker(object):
     self.hit_streak = 0
     self.age = 0
 
-  def update(self,bbox,img=None):
+
+  def update(self,bbox, features,img=None):
     """
-    Updates the state vector with observed bbox.
+      Updates the state vector with observed bbox.
     """
+
+    self.last_features = features
     self.time_since_update = 0
     self.history = []
     self.hits += 1
     self.hit_streak += 1
+
     if bbox != []:
       self.kf.update(convert_bbox_to_z(bbox))
 
   def predict(self,img=None):
     """
-    Advances the state vector and returns the predicted bounding box estimate.
+      Advances the state vector and returns the predicted bounding box estimate.
     """
     if((self.kf.x[6]+self.kf.x[2])<=0):
       self.kf.x[6] *= 0.0

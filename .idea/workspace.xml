@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9fd8e19c-6631-49ca-85f1-b6d114e7c1e7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/core/FeatureTracking.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/FeatureTracking.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/kalman_tracker.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/kalman_tracker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feature_matching.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/feature_matching.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sort.py" beforeDir="false" afterPath="$PROJECT_DIR$/sort.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
+            <state relative-caret-position="419">
+              <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -29,8 +32,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/FeatureTracking.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="61" selection-start-line="61" selection-end-line="61" />
+            <state relative-caret-position="434">
+              <caret line="316" selection-start-line="316" selection-end-line="317" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -41,7 +44,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/FeatureTrackingObject.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1351">
+            <state relative-caret-position="-1021">
               <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
               <folding>
                 <element signature="e#0#34#0" expanded="true" />
@@ -51,22 +54,34 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils.py">
+        <entry file="file://$PROJECT_DIR$/sort.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+            <state relative-caret-position="-600">
+              <caret line="44" column="73" selection-start-line="44" selection-start-column="73" selection-end-line="44" selection-end-column="73" />
               <folding>
-                <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#87#124#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/booleans.csv">
+        <entry file="file://$PROJECT_DIR$/core/kalman_tracker.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="74" column="25" lean-forward="true" selection-start-line="74" selection-start-column="25" selection-end-line="74" selection-end-column="25" />
+            <state relative-caret-position="255">
+              <caret line="40" column="20" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/utils.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="126" selection-start-line="12" selection-start-column="126" selection-end-line="12" selection-end-column="126" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -75,10 +90,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>normalize_</find>
-      <find>normalize_loca</find>
-      <find>for area in</find>
-      <find>.contains</find>
       <find>/ fram</find>
       <find>trk.o</find>
       <find>update_counter</find>
@@ -94,7 +105,6 @@
       <find>calculate_extrapolated_points</find>
       <find>get_bottom_mid_location</find>
       <find>trk.loca</find>
-      <find>is_inside</find>
       <find>bhatta</find>
       <find>counter</find>
       <find>filter_results</find>
@@ -104,7 +114,12 @@
       <find>print</find>
       <find>wah]</find>
       <find>wa</find>
+      <find>kalmantracker</find>
       <find>wah</find>
+      <find>FeatureTracking</find>
+      <find>bottom</find>
+      <find>is_inside</find>
+      <find>area.inside</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -118,12 +133,13 @@
         <option value="$PROJECT_DIR$/core/ObjectDetection.py" />
         <option value="$PROJECT_DIR$/brain/coco.data" />
         <option value="$PROJECT_DIR$/brain/coco.names" />
-        <option value="$PROJECT_DIR$/sort.py" />
         <option value="$PROJECT_DIR$/core/FeatureTrackingObject.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/utils.py" />
         <option value="$PROJECT_DIR$/core/FeatureTracking.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/core/kalman_tracker.py" />
+        <option value="$PROJECT_DIR$/sort.py" />
+        <option value="$PROJECT_DIR$/utils.py" />
       </list>
     </option>
   </component>
@@ -148,6 +164,11 @@
               <item name="object-tracking-counting" type="b2602c69:ProjectViewProjectNode" />
               <item name="object-tracking-counting" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="object-tracking-counting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="object-tracking-counting" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -157,6 +178,11 @@
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/core" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -198,7 +224,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.3197492" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.30407524" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -219,23 +245,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sort.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="23" selection-start-line="23" selection-end-line="24" />
-          <folding>
-            <element signature="e#87#124#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feature_matching.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="22" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/ObjectDetection.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -243,19 +252,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils.py">
+    <entry file="file://$PROJECT_DIR$/booleans.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="75">
+          <caret line="74" column="25" lean-forward="true" selection-start-line="74" selection-start-column="25" selection-end-line="74" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/FeatureTrackingObject.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1351">
+        <state relative-caret-position="-1021">
           <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
@@ -263,22 +269,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/FeatureTracking.py">
+    <entry file="file://$PROJECT_DIR$/core/feature_matching.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="61" selection-start-line="61" selection-end-line="61" />
+        <state relative-caret-position="30">
+          <caret line="2" column="22" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/core/kalman_tracker.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
+        <state relative-caret-position="255">
+          <caret line="40" column="20" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/FeatureTracking.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="434">
+          <caret line="316" selection-start-line="316" selection-end-line="317" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sort.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-600">
+          <caret line="44" column="73" selection-start-line="44" selection-start-column="73" selection-end-line="44" selection-end-column="73" />
+          <folding>
+            <element signature="e#87#124#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="126" selection-start-line="12" selection-start-column="126" selection-end-line="12" selection-end-column="126" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>

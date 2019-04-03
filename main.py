@@ -25,8 +25,8 @@ objDet = ObjectDetection()
 
 areas = utils.get_areas()
 
-# tracker = Sort(areas)  # create instance of the SORT tracker
-tracker = FeatureTracking(areas)
+tracker = Sort(areas)  # create instance of the SORT tracker
+# tracker = FeatureTracking(areas)
 
 paused = False
 

@@ -10,7 +10,7 @@ def get_areas():
     #        color=[255, 0, 255], inside=0, outside=0)
 
     # # cross line area
-    dm1 = DotMap(name='pink_cross_line', closed=False, enabled=True, polygon=Polygon([(0, 508), (0, 352), (720, 471), (508, 605)]),
+    dm1 = DotMap(name='pink_cross_line', closed=False, enabled=True, polygon=Polygon([(0, 580), (0, 252), (720, 441), (508, 555)]),
            color=[255, 0, 255], inside=0, outside=0)
 
     # AOI 1
