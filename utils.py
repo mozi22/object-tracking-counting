@@ -6,20 +6,23 @@ import cv2
 def get_areas():
     areas = list()
 
-    # cross line area
-    dm1 = DotMap(name='pink_cross_line', closed=False, enabled=True, polygon=Polygon([(0, 508), (0, 352), (720, 471), (508, 605)]),
+    dm1 = DotMap(name='pink_cross_line', closed=False, enabled=True, polygon=Polygon([(989, 330), (489, 316), (0, 755), (1104, 755)]),
            color=[255, 0, 255], inside=0, outside=0)
 
+    # # cross line area
+    # dm1 = DotMap(name='pink_cross_line', closed=False, enabled=True, polygon=Polygon([(0, 508), (0, 352), (720, 471), (508, 605)]),
+    #        color=[255, 0, 255], inside=0, outside=0)
+
     # AOI 1
-    dm2 = DotMap(name='red_closed', closed=True, enabled=True, polygon=Polygon([(516, 605), (728, 471), (1113, 436), (1148, 651)]),
+    dm2 = DotMap(name='red_closed', closed=True, enabled=False, polygon=Polygon([(516, 605), (728, 471), (1113, 436), (1148, 651)]),
            color=[0, 0, 255], inside=0, outside=0)
 
     # AOI 2
-    dm3 = DotMap(name='green_closed', closed=True, enabled=True, polygon=Polygon([(350, 594), (1148, 651), (1154, 754), (11, 751)]),
+    dm3 = DotMap(name='green_closed', closed=True, enabled=False, polygon=Polygon([(350, 594), (1148, 651), (1154, 754), (11, 751)]),
            color=[0, 255, 0], inside=0, outside=0)
 
     # AOI 3
-    dm4 = DotMap(name='orange_closed', closed=True, enabled=True, polygon=Polygon([(720, 471), (862, 350), (957, 343), (1113, 436)]),
+    dm4 = DotMap(name='orange_closed', closed=True, enabled=False, polygon=Polygon([(720, 471), (862, 350), (957, 343), (1113, 436)]),
            color=[0, 165, 255], inside=0, outside=0)
 
 
@@ -65,9 +68,7 @@ def draw_detected_objects(frame, predicted_boxes):
         name, probability, coords = box
         x, y, w, h = map(int, coords)
 
-        print(name.decode('utf-8'))
         if 'bicycle' in name.decode('utf-8'):
-            print('wah')
             cv2.rectangle(frame,
                         (int(x - w / 2), int(y - h / 2)),
                         (int(x + w / 2), int(y + h / 2)),
@@ -85,7 +86,7 @@ def draw_detected_objects(frame, predicted_boxes):
     return frame
 
 def draw_areas_of_interest(frame, areas):
-    weight = 0.3
+    weight = 0.2
     if weight > 0:
         overlay = frame.copy()
         weight1 = 1 - weight

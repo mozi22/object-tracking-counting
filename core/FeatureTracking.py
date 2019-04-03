@@ -281,7 +281,7 @@ class FeatureTracking:
 
                 self.create_new_object(result)
             # n objects found
-            return self.known_objects
+            return self.areas, self.known_objects
 
         paired, not_paired, ghost_known, to_be_deleted = self.perform_pairing(detections, self.known_objects)
 
@@ -311,7 +311,6 @@ class FeatureTracking:
                     self.is_inside(obj, area)
             print('Name =', area.name, 'Inside =', area.inside, 'Outside =', area.outside)
 
-        # print(self.areas)
 
         return self.areas, self.known_objects
 

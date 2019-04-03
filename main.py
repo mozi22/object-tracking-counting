@@ -12,7 +12,7 @@ samples_directory = root + '/samples' # Directory for test data
 sys.path.append(root)
 sys.path.append(samples_directory)
 
-video_file = samples_directory + '/vid1.MOV'
+video_file = samples_directory + '/short_vdos/dining_entrance/test_case1.mp4'
 video_capture = cv2.VideoCapture(video_file)
 video_capture.set(cv2.CAP_PROP_FPS, 5)
 fps = video_capture.get(cv2.CAP_PROP_FPS)
@@ -54,6 +54,11 @@ while True:
     detection_results = utils.filter_results(detection_results)
 
     # include tracking here
+    areas, tracker_results = tracker.run(detection_results,
+                                        frame,
+                                        frame_width,
+                                        frame_height,
+                                        time.time())
 
     frame = utils.draw_detected_objects(frame, detection_results)
     frame = utils.draw_areas_of_interest(frame, areas)
