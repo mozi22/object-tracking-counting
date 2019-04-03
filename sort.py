@@ -15,9 +15,6 @@ class Sort:
     """
     Sets key parameters for SORT
     """
-
-
-
     self.max_age = max_age
     self.min_hits = min_hits
     self.trackers = []
@@ -27,8 +24,6 @@ class Sort:
         area.polygon = Polygon(area.polygon)
         area.inside = 0
         area.counters = {}
-
-
     # how many previous positions you want to keep
     self.keep_history = 5
 
