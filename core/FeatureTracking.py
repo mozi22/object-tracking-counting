@@ -4,7 +4,6 @@ from shapely.geometry.polygon import Polygon
 import pandas as pd
 import numpy as np
 from core.FeatureTrackingObject import FeatureTrackingObject
-from scipy.misc import imsave
 class FeatureTracking:
 
 

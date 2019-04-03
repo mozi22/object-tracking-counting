@@ -11,15 +11,15 @@ def get_areas():
            color=[255, 0, 255], inside=0, outside=0)
 
     # AOI 1
-    dm2 = DotMap(name='red_closed', closed=True, enabled=False, polygon=Polygon([(516, 605), (728, 471), (1113, 436), (1148, 651)]),
+    dm2 = DotMap(name='red_closed', closed=True, enabled=True, polygon=Polygon([(516, 605), (728, 471), (1113, 436), (1148, 651)]),
            color=[0, 0, 255], inside=0, outside=0)
 
     # AOI 2
-    dm3 = DotMap(name='green_closed', closed=True, enabled=False, polygon=Polygon([(350, 594), (1148, 651), (1154, 754), (11, 751)]),
+    dm3 = DotMap(name='green_closed', closed=True, enabled=True, polygon=Polygon([(350, 594), (1148, 651), (1154, 754), (11, 751)]),
            color=[0, 255, 0], inside=0, outside=0)
 
     # AOI 3
-    dm4 = DotMap(name='orange_closed', closed=True, enabled=False, polygon=Polygon([(720, 471), (862, 350), (957, 343), (1113, 436)]),
+    dm4 = DotMap(name='orange_closed', closed=True, enabled=True, polygon=Polygon([(720, 471), (862, 350), (957, 343), (1113, 436)]),
            color=[0, 165, 255], inside=0, outside=0)
 
 
@@ -85,7 +85,7 @@ def draw_detected_objects(frame, predicted_boxes):
     return frame
 
 def draw_areas_of_interest(frame, areas):
-    weight = 0.4
+    weight = 0.2
     if weight > 0:
         overlay = frame.copy()
         weight1 = 1 - weight
