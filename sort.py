@@ -97,7 +97,19 @@ class Sort:
       if area.polygon.contains(trk.location_history[-1]):
           area.inside += 1
 
+  def unique(self,list1):
 
+      # intilize a null list
+      unique_list = []
+
+      # traverse for all elements
+      for x in list1:
+          # check if exists in unique_list or not
+          if x not in unique_list:
+              unique_list.append(x)
+              # print list
+
+      return unique_list
   def run(self,dets,img, frame_width, frame_height, timestamp=None):
 
 
@@ -165,12 +177,11 @@ class Sort:
                                      img)
         self.trackers.append(KalmanBoxTracker(dets[i,:], features, dets[i,5]))
 
-    i = len(self.trackers)
-
+    to_be_deleted = []
     for area in self.areas:
         if area.closed:
             area.inside = 0
-        for trk in reversed(self.trackers):
+        for idx, trk in enumerate(reversed(self.trackers)):
             if dets == []:
               trk.update([],img)
             d = trk.get_state()
@@ -185,8 +196,6 @@ class Sort:
                     trk.location_history.pop(0)
             else:
               trk.history_limit += 1
-
-            i -= 1
 
             if area.closed == True:
                 if len(trk.location_history) > 1:
@@ -209,9 +218,13 @@ class Sort:
                 # if distance between last time we saw this object and current estimation is more than 25. Kill it.
                 if closeness > 0.25:
                     if len(self.trackers) > 0:
-                        self.trackers.pop(i)
+                        to_be_deleted.append(idx)
 
         print('Name =', area.name, 'Inside =', area.inside, 'Outside =', area.outside, 'Counters =', area.counters)
+
+    to_be_deleted = self.unique(to_be_deleted)
+    for to_delete in to_be_deleted:
+        self.trackers.pop(to_delete)
 
     if(len(ret)>0):
       return self.areas, self.trackers
