@@ -168,6 +168,8 @@ class Sort:
     i = len(self.trackers)
 
     for area in self.areas:
+        if area.closed:
+            area.inside = 0
         for trk in reversed(self.trackers):
             if dets == []:
               trk.update([],img)

@@ -23,7 +23,7 @@ def get_areas():
            color=[255, 0, 255], inside=0, outside=0)
 
     # AOI 1
-    dm2 = DotMap(name='red_closed', closed=True, enabled=True, polygon=Polygon([(516, 605), (728, 471), (1113, 436), (1148, 651)]),
+    dm2 = DotMap(name='red_closed', closed=True, enabled=True, polygon=Polygon([(588, 605), (750, 441), (1113, 436), (1148, 651)]),
            color=[0, 0, 255], inside=0, outside=0)
 
     # AOI 2
