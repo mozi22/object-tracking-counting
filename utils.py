@@ -85,7 +85,7 @@ def draw_detected_objects(frame, predicted_boxes):
     return frame
 
 def draw_areas_of_interest(frame, areas):
-    weight = 0.2
+    weight = 0.3
     if weight > 0:
         overlay = frame.copy()
         weight1 = 1 - weight
