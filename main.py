@@ -53,6 +53,7 @@ while True:
     detection_results = objDet.run(frame)
     detection_results = utils.filter_results(detection_results)
 
+    # include tracking here
 
     frame = utils.draw_detected_objects(frame, detection_results)
     frame = utils.draw_areas_of_interest(frame, areas)
