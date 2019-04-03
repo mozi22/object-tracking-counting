@@ -110,6 +110,11 @@ class Sort:
               # print list
 
       return unique_list
+
+  def delete_objs(self,to_be_deleted):
+      for index in sorted(to_be_deleted, reverse=True):
+          del self.trackers[index]
+
   def run(self,dets,img, frame_width, frame_height, timestamp=None):
 
 
@@ -223,8 +228,8 @@ class Sort:
         print('Name =', area.name, 'Inside =', area.inside, 'Outside =', area.outside, 'Counters =', area.counters)
 
     to_be_deleted = self.unique(to_be_deleted)
-    for to_delete in to_be_deleted:
-        self.trackers.pop(to_delete)
+
+    self.delete_objs(to_be_deleted)
 
     if(len(ret)>0):
       return self.areas, self.trackers
