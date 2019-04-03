@@ -310,7 +310,7 @@ class FeatureTracking:
                         self.change_area_count(obj, area)
                 else:
                     self.is_inside(obj, area)
-            print('Name =', area.name, 'Inside =', area.inside, 'Outside =', area.outside, 'Counters =', area.counters)
+            print('Name =', area.name, 'Inside =', area.inside, 'Outside =', area.outside)
 
         # print(self.areas)
 
