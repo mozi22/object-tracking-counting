@@ -3,6 +3,8 @@ import cv2
 from core.ObjectDetection import ObjectDetection
 from sort import Sort
 import utils
+import time
+from core.FeatureTracking import FeatureTracking
 
 root = '/app'
 samples_directory = root + '/samples' # Directory for test data
@@ -20,10 +22,21 @@ objDet = ObjectDetection()
 
 areas = utils.get_areas()
 
-tracker = Sort(areas)  # create instance of the SORT tracker
+# tracker = Sort(areas)  # create instance of the SORT tracker
+tracker = FeatureTracking(areas)
 
+paused = False
 
 while True:
+    key = cv2.waitKey(1) & 0xFF
+
+    if key == ord('p'):
+        paused = not paused
+
+    if paused == True:
+        continue
+
+
     ret, frame = video_capture.read()
 
     # reduce frame size.
@@ -34,8 +47,15 @@ while True:
     detection_results = objDet.run(frame)
     detection_results = utils.filter_results(detection_results)
 
+    tracking_results = tracker.run(detection_results,
+                                              frame,
+                                              frame.shape[1],
+                                              frame.shape[0],
+                                              time.time())
+
     frame = utils.draw_detected_objects(frame, detection_results)
     frame = utils.draw_areas_of_interest(frame, areas)
     cv2.imshow('', frame)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+
+    if key == ord('q'):
         break

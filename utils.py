@@ -7,25 +7,30 @@ def get_areas():
     areas = list()
 
     # cross line area
-    dm1 = DotMap(polygon=Polygon([(350, 594), (645, 475), (720, 471), (508, 605)]),
+    dm1 = DotMap(name='pink_cross_line', closed=False, enabled=True, polygon=Polygon([(0, 538), (0, 352), (720, 471), (508, 605)]),
            color=[255, 0, 255], inside=0, outside=0)
 
     # AOI 1
-    dm2 = DotMap(polygon=Polygon([(516, 605), (728, 471), (1113, 436), (1148, 651)]),
+    dm2 = DotMap(name='red_closed', closed=True, enabled=True, polygon=Polygon([(516, 605), (728, 471), (1113, 436), (1148, 651)]),
            color=[0, 0, 255], inside=0, outside=0)
 
     # AOI 2
-    dm3 = DotMap(polygon=Polygon([(350, 594), (1148, 651), (1154, 754), (11, 751)]),
+    dm3 = DotMap(name='green_closed', closed=True, enabled=True, polygon=Polygon([(350, 594), (1148, 651), (1154, 754), (11, 751)]),
            color=[0, 255, 0], inside=0, outside=0)
 
     # AOI 3
-    dm4 = DotMap(polygon=Polygon([(720, 471), (862, 350), (957, 343), (1113, 436)]),
+    dm4 = DotMap(name='orange_closed', closed=True, enabled=True, polygon=Polygon([(720, 471), (862, 350), (957, 343), (1113, 436)]),
            color=[0, 165, 255], inside=0, outside=0)
 
-    areas.append(dm1)
-    areas.append(dm2)
-    areas.append(dm3)
-    areas.append(dm4)
+
+    if dm1.enabled == True:
+        areas.append(dm1)
+    if dm2.enabled == True:
+        areas.append(dm2)
+    if dm3.enabled == True:
+        areas.append(dm3)
+    if dm4.enabled == True:
+        areas.append(dm4)
 
     return areas
 
@@ -42,19 +47,31 @@ def filter_results(predicted_boxes):
 # responsible for drawing the bounding boxes and class names
 def draw_detected_objects(frame, predicted_boxes):
     font_box_color = [255, 0, 0]
+    bike_color = [0, 0, 255]
     for box in predicted_boxes:
-        x, y, w, h = box[2]
+        name, probability, coords = box
+        x, y, w, h = map(int, coords)
 
-        cv2.rectangle(frame,
-                    (int(x - w / 2), int(y - h / 2)),
-                    (int(x + w / 2), int(y + h / 2)),
-                    font_box_color)
-        cv2.putText(frame, box[0].decode('utf-8'), (int(x), int(y)),
-                   cv2.FONT_HERSHEY_SIMPLEX, 0.5, font_box_color, 2, cv2.LINE_AA)
+        if name.decode('utf-8') == 'bicycle':
+
+            cv2.rectangle(frame,
+                        (int(x - w / 2), int(y - h / 2)),
+                        (int(x + w / 2), int(y + h / 2)),
+                        bike_color)
+            cv2.putText(frame, box[0].decode('utf-8'), (int(x), int(y)),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, bike_color, 2, cv2.LINE_AA)
+        else:
+            cv2.rectangle(frame,
+                        (int(x - w / 2), int(y - h / 2)),
+                        (int(x + w / 2), int(y + h / 2)),
+                        font_box_color)
+
+            cv2.putText(frame, box[0].decode('utf-8'), (int(x), int(y)),
+                       cv2.FONT_HERSHEY_SIMPLEX, 0.5, font_box_color, 2, cv2.LINE_AA)
     return frame
 
 def draw_areas_of_interest(frame, areas):
-    weight = 0.4
+    weight = 0.1
     if weight > 0:
         overlay = frame.copy()
         weight1 = 1 - weight
