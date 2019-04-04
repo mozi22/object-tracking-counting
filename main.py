@@ -61,6 +61,11 @@ while True:
                                         frame_height,
                                         time.time())
 
+    detection_results = []
+    for result in tracker_results:
+
+        detection_results.append((result.name.encode('utf-8'), 0.0, (result.location_history[-1].x, result.location_history[-1].y - (result.h/2), result.w, result.h)))
+
     frame = utils.draw_detected_objects(frame, detection_results)
     frame = utils.draw_areas_of_interest(frame, areas)
     cv2.imshow('', frame)

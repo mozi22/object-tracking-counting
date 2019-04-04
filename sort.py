@@ -15,14 +15,12 @@ class Sort:
     """
     Sets key parameters for SORT
     """
-
-
-
     self.max_age = max_age
     self.min_hits = min_hits
     self.trackers = []
     self.frame_count = 0
     self.areas = areas
+
     for area in self.areas:
         area.polygon = Polygon(area.polygon)
         area.inside = 0
@@ -30,7 +28,7 @@ class Sort:
 
 
     # how many previous positions you want to keep
-    self.keep_history = 5
+    self.keep_history = 10
 
   # for closed areas
   def is_inside(self, obj, area):
@@ -39,8 +37,14 @@ class Sort:
         if  area.polygon.contains(obj.location_history[0]) and \
             area.polygon.contains(obj.location_history[1]) and \
             area.polygon.contains(obj.location_history[2]) and \
-            not area.polygon.contains(obj.location_history[3]) and \
-            not area.polygon.contains(obj.location_history[4]):
+            area.polygon.contains(obj.location_history[3]) and \
+            area.polygon.contains(obj.location_history[4]) and \
+            area.polygon.contains(obj.location_history[5]) and \
+            not area.polygon.contains(obj.location_history[6]) and \
+            not area.polygon.contains(obj.location_history[7]) and \
+            not area.polygon.contains(obj.location_history[8]) and \
+            not area.polygon.contains(obj.location_history[9]):
+
             # the first time, this person was detected inside and now he is outside.
             area.outside += 1
             self.update_counter(area.counters, area.interest, obj.obj_type + '-')
@@ -49,8 +53,14 @@ class Sort:
         elif not area.polygon.contains(obj.location_history[0]) and \
             not area.polygon.contains(obj.location_history[1]) and \
             not area.polygon.contains(obj.location_history[2]) and \
-            area.polygon.contains(obj.location_history[3]) and \
-            area.polygon.contains(obj.location_history[4]):
+            not area.polygon.contains(obj.location_history[3]) and \
+            not area.polygon.contains(obj.location_history[4]) and \
+            not area.polygon.contains(obj.location_history[5]) and \
+            area.polygon.contains(obj.location_history[6]) and \
+            area.polygon.contains(obj.location_history[7]) and \
+            area.polygon.contains(obj.location_history[8]) and \
+            area.polygon.contains(obj.location_history[9]):
+
             # the first time, this person was detected outside and now he is inside.
             area.inside += 1
             self.update_counter(area.counters, area.interest, obj.obj_type + ' +')
@@ -82,6 +92,14 @@ class Sort:
       bottom_mid_y = int(y2)
 
       return bottom_mid_x, bottom_mid_y
+
+  def get_mid_point(self, x1, x2, y2):
+
+      w = x2 - x1
+      mid_point_x = int(x1 - (w / 2))
+      mid_point_y = int(y2)
+
+      return mid_point_x, mid_point_y
 
   # we have to denormalize the polygon saved in config for use.
   def denormalize_polygon(self, polygon, width, height):

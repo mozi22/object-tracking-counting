@@ -19,19 +19,19 @@ def get_areas():
     # dm1 = DotMap(name='pink_cross_line', closed=False, enabled=True, polygon=Polygon([(0, 580), (0, 252), (750, 441), (508, 555)]),
     #        color=[255, 0, 255], inside=0, outside=0)
 
-    dm1 = DotMap(name='pink_cross_line', closed=False, enabled=True, polygon=Polygon([(0, 570), (0, 252), (750, 441), (588, 605)]),
+    dm1 = DotMap(name='pink_cross_line', closed=False, enabled=True, polygon=Polygon([(0, 570), (0, 452), (750, 441), (588, 605)]),
            color=[255, 0, 255], inside=0, outside=0)
 
     # AOI 1
-    dm2 = DotMap(name='red_closed', closed=True, enabled=True, polygon=Polygon([(588, 605), (750, 441), (1113, 436), (1148, 651)]),
+    dm2 = DotMap(name='red_closed', closed=True, enabled=False, polygon=Polygon([(588, 605), (750, 441), (1113, 436), (1148, 651)]),
            color=[0, 0, 255], inside=0, outside=0)
 
     # AOI 2
-    dm3 = DotMap(name='green_closed', closed=True, enabled=True, polygon=Polygon([(350, 594), (1148, 651), (1154, 754), (11, 751)]),
+    dm3 = DotMap(name='green_closed', closed=True, enabled=False, polygon=Polygon([(350, 594), (1148, 651), (1154, 754), (11, 751)]),
            color=[0, 255, 0], inside=0, outside=0)
 
     # AOI 3
-    dm4 = DotMap(name='orange_closed', closed=True, enabled=True, polygon=Polygon([(750, 441), (862, 350), (957, 343), (1113, 436)]),
+    dm4 = DotMap(name='orange_closed', closed=True, enabled=False, polygon=Polygon([(750, 441), (862, 350), (957, 343), (1113, 436)]),
            color=[0, 165, 255], inside=0, outside=0)
 
 
@@ -71,10 +71,12 @@ def filter_results(predicted_boxes):
 
 # responsible for drawing the bounding boxes and class names
 def draw_detected_objects(frame, predicted_boxes):
+
     font_box_color = [255, 0, 0]
     bike_color = [0, 0, 255]
     for box in predicted_boxes:
         name, probability, coords = box
+
         x, y, w, h = map(int, coords)
 
         if 'bicycle' in name.decode('utf-8'):
