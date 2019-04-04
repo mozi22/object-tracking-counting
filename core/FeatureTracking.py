@@ -16,14 +16,13 @@ class FeatureTracking:
         self.old_frame = None
 
         self.known_objects = []
-        self.time_to_live = 1
+        self.time_to_live = 3
 
         self.bhattacharya_distance_limit = 0.35
 
         for area in self.areas:
             area.polygon = Polygon(area.polygon)
-            area.inside = 0
-            area.counters = {}
+            area.counters = { 'b_in' : 0, 'p_in' : 0 }
 
 
     def translate(self, name):
@@ -39,7 +38,13 @@ class FeatureTracking:
 
         return np.rint(np_area)
 
-    # for closed areas
+    def get_type(self,obj):
+        if obj.type == 'person':
+            return 0
+        else:
+            return 1
+
+    # for open areas
     def is_inside(self, obj, area):
         try:
             if len(obj.location_history) > 3:
@@ -50,8 +55,10 @@ class FeatureTracking:
                     not area.polygon.contains(obj.location_history[4]):
                     # the first time, this person was detected inside and now he is outside.
                     area.outside += 1
-                    self.update_counter(area.counters, area.interest, obj.type + '-')
+
+
                     return 'Out'
+
                 elif not area.polygon.contains(obj.location_history[0]) and \
                     not area.polygon.contains(obj.location_history[1]) and \
                     not area.polygon.contains(obj.location_history[2]) and \
@@ -61,8 +68,12 @@ class FeatureTracking:
                     # self.update_counter(area.counters, area.interest, '+')
                     # the first time, this person was detected outside and now he is inside.
                     area.inside += 1
-                    self.update_counter(area.counters, area.interest, obj.type + '+')
-                    # imsave('mozi.jpg',self.get_sub_frame_using_bounding_box_results(obj.location_history[4].x,obj.location_history[4].y,obj.bounding_box[0],obj.bounding_box[1]))
+                    if self.get_type(obj) == 0:
+                        area.counters['p_in'] += 1
+                    if self.get_type(obj) == 1:
+                        area.counters['b_in'] += 1
+
+                    self.update_counter(area.counters, area.interest, self.get_type(obj) + '+')
                     return 'In'
         except:
             pass
@@ -72,7 +83,7 @@ class FeatureTracking:
             frame_writer.writerow(params)
 
     def update_counter(self, counters, name, suff):
-        counter = name + ' ' + suff
+        counter = (name + ' ' + suff).trim()
         if not counter in counters:
             counters[counter] = 0
         counters[counter] += 1

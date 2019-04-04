@@ -8,6 +8,7 @@ __pycache__/
 
 samples/
 brain/
+.idea/
 
 # Distribution / packaging
 .Python

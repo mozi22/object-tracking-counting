@@ -68,6 +68,7 @@ while True:
 
     frame = utils.draw_detected_objects(frame, detection_results)
     frame = utils.draw_areas_of_interest(frame, areas)
+    utils.draw_numbers(frame, areas)
     cv2.imshow('', frame)
 
     if key == ord('q'):
