@@ -25,8 +25,8 @@ objDet = ObjectDetection()
 
 areas = utils.get_areas()
 
-tracker = Sort(areas)  # create instance of the SORT tracker
-# tracker = FeatureTracking(areas)
+# tracker = Sort(areas)  # create instance of the SORT tracker
+tracker = FeatureTracking(areas)
 
 paused = False
 
@@ -64,7 +64,7 @@ while True:
     detection_results = []
     for result in tracker_results:
 
-        detection_results.append((result.name.encode('utf-8'), 0.0, (result.location_history[-1].x, result.location_history[-1].y - (result.h/2), result.w, result.h)))
+        detection_results.append((result.id.encode('utf-8'), 0.0, (result.location_history[-1].x - (result.bounding_box[0]/2), result.location_history[-1].y - (result.bounding_box[1]/2), result.bounding_box[0], result.bounding_box[1])))
 
     frame = utils.draw_detected_objects(frame, detection_results)
     frame = utils.draw_areas_of_interest(frame, areas)

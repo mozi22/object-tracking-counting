@@ -50,7 +50,7 @@ class FeatureTracking:
                     not area.polygon.contains(obj.location_history[4]):
                     # the first time, this person was detected inside and now he is outside.
                     area.outside += 1
-                    # self.update_counter(area.counters, area.interest, '-')
+                    self.update_counter(area.counters, area.interest, obj.type + '-')
                     return 'Out'
                 elif not area.polygon.contains(obj.location_history[0]) and \
                     not area.polygon.contains(obj.location_history[1]) and \
@@ -61,6 +61,7 @@ class FeatureTracking:
                     # self.update_counter(area.counters, area.interest, '+')
                     # the first time, this person was detected outside and now he is inside.
                     area.inside += 1
+                    self.update_counter(area.counters, area.interest, obj.type + '+')
                     # imsave('mozi.jpg',self.get_sub_frame_using_bounding_box_results(obj.location_history[4].x,obj.location_history[4].y,obj.bounding_box[0],obj.bounding_box[1]))
                     return 'In'
         except:
@@ -93,13 +94,27 @@ class FeatureTracking:
 
         name, probability, x, y, width, height = self.get_params_of_detection(det_obj)
 
-        name = self.translate(name) + str(self.id)
+        obj_type = self.translate(name)
+        name = obj_type + str(self.id)
         features = self.calculatePersonHistograms(x, y, width, height)
 
-        new_obj = FeatureTrackingObject(name, x, y, width, height, features)
+
+
+        new_obj = FeatureTrackingObject(name, x, y, width, height, features, obj_type)
+        # self.width_to_height_ratio(new_obj)
 
         self.id += 1
         self.known_objects.append(new_obj)
+
+
+    # some people are getting detected as bikes due to model inaccracies
+    # def width_to_height_ratio(self, obj):
+    #     if obj.id == 'person62' or obj.id == 'person2' or obj.id == 'person3' or obj.id == 'person4' or obj.id == 'person5' or \
+    #             obj.id == 'person6' or obj.id == 'person7' or obj.id == 'person8' or obj.id == 'person9' or obj.id == 'person10':
+    #         print('WH =',str(obj.bounding_box[0]/obj.bounding_box[1]), 'Name =',obj.id)
+    #     if obj.id == 'bicycle62' or obj.id == 'bicycle3' or obj.id == 'bicycle5' or obj.id == 'bicycle7' or obj.id == 'bicycle9' or \
+    #             obj.id == 'bicycle383' or obj.id == 'bicycle4' or obj.id == 'bicycle6' or obj.id == 'bicycle8' or obj.id == 'bicycle10':
+    #         print('WH =',str(obj.bounding_box[0]/obj.bounding_box[1]), 'Name =',obj.id)
 
 
     def get_params_of_detection(self, det):
@@ -314,8 +329,7 @@ class FeatureTracking:
                         self.change_area_count(obj, area)
                 else:
                     self.is_inside(obj, area)
-            print('Name =', area.name, 'Inside =', area.inside, 'Outside =', area.outside)
-
+            print('Name =', area.name, 'Inside =', area.inside, 'Outside =', area.outside, 'Counters =', area.counters)
 
         return self.areas, self.known_objects
 

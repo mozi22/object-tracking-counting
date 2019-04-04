@@ -5,10 +5,12 @@ import time
 
 class FeatureTrackingObject:
 
-    def __init__(self, id, x, y, box_width, box_height, features):
+    def __init__(self, id, x, y, box_width, box_height, features, obj_type):
 
         # how many previous steps you want to keep track of
         self.history_limit = 5
+
+        self.type = obj_type
 
         self.location_history = list()
         self.timestamp_history = list()
