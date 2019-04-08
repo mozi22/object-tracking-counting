@@ -3,6 +3,7 @@ from shapely.geometry import Point
 from shapely.geometry.polygon import Polygon
 import pandas as pd
 import numpy as np
+import time
 import csv
 from core.FeatureTrackingObject import FeatureTrackingObject
 class FeatureTracking:
@@ -18,11 +19,14 @@ class FeatureTracking:
         self.known_objects = []
         self.time_to_live = 3
 
+
         self.bhattacharya_distance_limit = 0.35
 
         for area in self.areas:
             area.polygon = Polygon(area.polygon)
             area.counters = { 'b_in' : 0, 'p_in' : 0 }
+            area.total_time_spent_bike = 0
+            area.total_time_spent_person = 0
 
 
     def translate(self, name):
@@ -295,7 +299,23 @@ class FeatureTracking:
 
     def change_area_count(self, trk, area):
         if area.polygon.contains(trk.location_history[-1]):
+            if trk.currently_inside == False:
+                # means that the person was not inside but now he is inside
+                trk.inside_start_time = time.time()
+                trk.currently_inside = True
+
             area.inside += 1
+        else:
+            if trk.currently_inside == True:
+                # this means he was inside but now he is counted as outside
+                # count the total time diff from when he went in and now he is leaving out.
+                trk.currently_inside = False
+                total_time_spent = time.time() - trk.inside_start_time
+
+                if trk.type == 'person':
+                    area.total_time_spent_person += total_time_spent
+                elif trk.type == 'bicycle':
+                    area.total_time_spent_bike += total_time_spent
 
     def run(self, detections, frame, frame_w, frame_h, timestamp):
 

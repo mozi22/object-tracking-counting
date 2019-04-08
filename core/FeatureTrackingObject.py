@@ -10,6 +10,10 @@ class FeatureTrackingObject:
         # how many previous steps you want to keep track of
         self.history_limit = 5
 
+        # for closed area time counting only
+        self.currently_inside = False
+        self.inside_start_time = None
+
         self.type = obj_type
 
         self.location_history = list()

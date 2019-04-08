@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9fd8e19c-6631-49ca-85f1-b6d114e7c1e7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/FeatureTracking.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/FeatureTracking.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/FeatureTrackingObject.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/FeatureTrackingObject.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,11 +24,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/FeatureTracking.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="29" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
+            <state relative-caret-position="689">
+              <caret line="311" column="44" selection-start-line="311" selection-start-column="44" selection-end-line="311" selection-end-column="44" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -37,8 +39,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/FeatureTrackingObject.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="74" selection-start-line="7" selection-start-column="74" selection-end-line="7" selection-end-column="74" />
+            <state relative-caret-position="90">
+              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
               <folding>
                 <element signature="e#0#34#0" expanded="true" />
               </folding>
@@ -46,11 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+            <state relative-caret-position="120">
+              <caret line="95" column="35" selection-start-line="95" selection-start-column="35" selection-end-line="95" selection-end-column="35" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -71,16 +73,9 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>print(</find>
-      <find>wah]</find>
-      <find>wa</find>
-      <find>kalmantracker</find>
-      <find>wah</find>
-      <find>FeatureTracking</find>
       <find>bottom</find>
       <find>area.inside</find>
       <find>.pop</find>
-      <find>change_area_count</find>
       <find>to_be_deleted</find>
       <find>delete_objs</find>
       <find>location_history</find>
@@ -101,6 +96,13 @@
       <find>update_counter</find>
       <find>is_inside</find>
       <find>time_to</find>
+      <find>closed</find>
+      <find>update_current_paired_objects</find>
+      <find>FeatureTrackingObject(</find>
+      <find>change_area_count</find>
+      <find>change_</find>
+      <find>total_time_spent_bike</find>
+      <find>person</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -116,11 +118,11 @@
         <option value="$PROJECT_DIR$/brain/coco.names" />
         <option value="$PROJECT_DIR$/sort.py" />
         <option value="$PROJECT_DIR$/core/kalman_tracker.py" />
-        <option value="$PROJECT_DIR$/core/FeatureTrackingObject.py" />
         <option value="$PROJECT_DIR$/main.py" />
-        <option value="$PROJECT_DIR$/core/FeatureTracking.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/core/FeatureTrackingObject.py" />
         <option value="$PROJECT_DIR$/utils.py" />
+        <option value="$PROJECT_DIR$/core/FeatureTracking.py" />
       </list>
     </option>
   </component>
@@ -192,7 +194,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1985" y="-4" width="1855" height="1084" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.33406115" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -251,20 +252,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/FeatureTrackingObject.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="74" selection-start-line="7" selection-start-column="74" selection-end-line="7" selection-end-column="74" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/FeatureTrackingObject.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -275,22 +276,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/FeatureTracking.py">
+    <entry file="file://$PROJECT_DIR$/utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="29" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
+        <state relative-caret-position="120">
+          <caret line="95" column="35" selection-start-line="95" selection-start-column="35" selection-end-line="95" selection-end-column="35" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils.py">
+    <entry file="file://$PROJECT_DIR$/core/FeatureTracking.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+        <state relative-caret-position="689">
+          <caret line="311" column="44" selection-start-line="311" selection-start-column="44" selection-end-line="311" selection-end-column="44" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
