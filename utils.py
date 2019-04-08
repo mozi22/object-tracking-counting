@@ -14,7 +14,7 @@ def get_areas():
     # dm1 = DotMap(name='Pink', closed=False, enabled=True, polygon=Polygon([(0, 530), (0, 442), (800, 441), (638, 585)]),
     #        color=[255, 0, 255], inside=0, outside=0)
 
-    dm1 = DotMap(name='Pink', closed=False, enabled=True, polygon=Polygon([(301, 609), (623, 478), (800, 441), (638, 585)]),
+    dm1 = DotMap(name='Enter', closed=False, enabled=True, polygon=Polygon([(301, 609), (623, 478), (800, 441), (638, 585)]),
            color=[255, 0, 255], inside=0, outside=0)
 
     # AOI 1
@@ -93,7 +93,7 @@ def draw_detected_objects(frame, predicted_boxes):
 
 def draw_numbers(frame, areas):
 
-    cv2.rectangle(frame,(20,20),(350,200),[0,0,255], cv2.FILLED)
+    cv2.rectangle(frame,(20,20),(340,225),[162,97,69], cv2.FILLED)
 
     text_x, text_y = 40, 60
     vertical_text_gap = 35
@@ -107,6 +107,8 @@ def draw_numbers(frame, areas):
             cv2.putText(frame, area.name + ' Bicycle + : ' + str(area.counters['b_in']), (text_x, text_y + vertical_text_gap), cv2.FONT_HERSHEY_DUPLEX, 0.8, [255, 255, 255], 2)
         else:
             cv2.putText(frame, area.name + ' Inside + : ' + str(area.inside), (text_x, text_y + (vertical_text_gap * 2)), cv2.FONT_HERSHEY_DUPLEX, 0.8, [255, 255, 255], 2)
+            cv2.putText(frame, area.name + ' Time Person : ' + str(area.inside), (text_x, text_y + (vertical_text_gap * 3)), cv2.FONT_HERSHEY_DUPLEX, 0.8, [255, 255, 255], 2)
+            cv2.putText(frame, area.name + ' Time Bicycle : ' + str(area.inside), (text_x, text_y + (vertical_text_gap * 4)), cv2.FONT_HERSHEY_DUPLEX, 0.8, [255, 255, 255], 2)
 
     return frame
 
