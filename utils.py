@@ -93,7 +93,7 @@ def draw_detected_objects(frame, predicted_boxes):
 
 def draw_numbers(frame, areas):
 
-    cv2.rectangle(frame,(20,20),(430,225),[162,97,69], cv2.FILLED)
+    cv2.rectangle(frame,(20,20),(430,305),[162,97,69], cv2.FILLED)
 
     text_x, text_y = 40, 60
     vertical_text_gap = 35
@@ -104,11 +104,13 @@ def draw_numbers(frame, areas):
 
         if area.closed == False:
             cv2.putText(frame, area.name + ' Person + : ' + str(area.counters['p_in']), (text_x, text_y), cv2.FONT_HERSHEY_DUPLEX, 0.8, [255, 255, 255], 2)
-            cv2.putText(frame, area.name + ' Bicycle + : ' + str(area.counters['b_in']), (text_x, text_y + vertical_text_gap), cv2.FONT_HERSHEY_DUPLEX, 0.8, [255, 255, 255], 2)
+            cv2.putText(frame, area.name + ' Person - : ' + str(area.counters['p_out']), (text_x, text_y + vertical_text_gap), cv2.FONT_HERSHEY_DUPLEX, 0.8, [255, 255, 255], 2)
+            cv2.putText(frame, area.name + ' Bicycle + : ' + str(area.counters['b_in']), (text_x, text_y + vertical_text_gap * 2), cv2.FONT_HERSHEY_DUPLEX, 0.8, [255, 255, 255], 2)
+            cv2.putText(frame, area.name + ' Bicycle - : ' + str(area.counters['b_out']), (text_x, text_y + vertical_text_gap * 3), cv2.FONT_HERSHEY_DUPLEX, 0.8, [255, 255, 255], 2)
         else:
-            cv2.putText(frame, area.name + ' Inside + : ' + str(area.inside), (text_x, text_y + (vertical_text_gap * 2)), cv2.FONT_HERSHEY_DUPLEX, 0.8, [255, 255, 255], 2)
-            cv2.putText(frame, area.name + ' Time Person : ' + str(round(area.total_time_spent_person,2)) + 's', (text_x, text_y + (vertical_text_gap * 3)), cv2.FONT_HERSHEY_DUPLEX, 0.8, [255, 255, 255], 2)
-            cv2.putText(frame, area.name + ' Time Bicycle : ' + str(round(area.total_time_spent_bike,2)) + 's', (text_x, text_y + (vertical_text_gap * 4)), cv2.FONT_HERSHEY_DUPLEX, 0.8, [255, 255, 255], 2)
+            cv2.putText(frame, area.name + ' Inside + : ' + str(area.inside), (text_x, text_y + (vertical_text_gap * 4)), cv2.FONT_HERSHEY_DUPLEX, 0.8, [255, 255, 255], 2)
+            cv2.putText(frame, area.name + ' Time Person : ' + str(round(area.total_time_spent_person,2)) + 's', (text_x, text_y + (vertical_text_gap * 5)), cv2.FONT_HERSHEY_DUPLEX, 0.8, [255, 255, 255], 2)
+            cv2.putText(frame, area.name + ' Time Bicycle : ' + str(round(area.total_time_spent_bike,2)) + 's', (text_x, text_y + (vertical_text_gap * 6)), cv2.FONT_HERSHEY_DUPLEX, 0.8, [255, 255, 255], 2)
 
     return frame
 

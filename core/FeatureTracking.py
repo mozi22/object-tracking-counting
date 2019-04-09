@@ -1,3 +1,4 @@
+from scipy.misc import imsave
 import cv2
 from shapely.geometry import Point
 from shapely.geometry.polygon import Polygon
@@ -24,7 +25,7 @@ class FeatureTracking:
 
         for area in self.areas:
             area.polygon = Polygon(area.polygon)
-            area.counters = { 'b_in' : 0, 'p_in' : 0 }
+            area.counters = {'b_in' : 0, 'p_in' : 0, 'b_out' : 0, 'p_out' : 0 }
             area.total_time_spent_bike = 0
             area.total_time_spent_person = 0
 
@@ -59,6 +60,12 @@ class FeatureTracking:
                     not area.polygon.contains(obj.location_history[4]):
                     # the first time, this person was detected inside and now he is outside.
                     area.outside += 1
+
+
+                    if self.get_type(obj) == 0:
+                        area.counters['p_out'] += 1
+                    if self.get_type(obj) == 1:
+                        area.counters['b_out'] += 1
 
 
                     return 'Out'
@@ -283,7 +290,19 @@ class FeatureTracking:
 
     def delete_objs(self,to_be_deleted):
         for index in sorted(to_be_deleted, reverse=True):
+
+            # since the person is never left out we count the timed.
+            # if self.known_objects[index].currently_inside == True:
+            #     total_time_spent = time.time() - self.known_objects[index].inside_start_time
+            #     # print(self.known_objects[index].id, self.known_objects[index].inside_start_time)
+            #
+            #     if 'person' in self.known_objects[index].id:
+            #         self.areas[1].total_time_spent_person += total_time_spent
+            #     else:
+            #         self.areas[1].total_time_spent_bike += total_time_spent
+            self.add_time(self.known_objects[index], self.areas[1])
             del self.known_objects[index]
+
 
     def update_current_paired_objects(self, paired, detected):
 
@@ -297,25 +316,40 @@ class FeatureTracking:
 
             self.known_objects[known_obj_index].update_attributes(x, y, width, height, features, distance_among_them)
 
+
+    def add_time(self, trk, area):
+        current_time = time.time()
+        total_time_spent = current_time - trk.last_seen
+
+
+        if 'person' in trk.id:
+            area.total_time_spent_person += total_time_spent
+        else:
+            area.total_time_spent_bike += total_time_spent
+
+        trk.last_seen = current_time
+
     def change_area_count(self, trk, area):
         if area.polygon.contains(trk.location_history[-1]):
-            if trk.currently_inside == False:
-                # means that the person was not inside but now he is inside
-                trk.inside_start_time = time.time()
-                trk.currently_inside = True
-
             area.inside += 1
-        else:
-            if trk.currently_inside == True:
-                # this means he was inside but now he is counted as outside
-                # count the total time diff from when he went in and now he is leaving out.
-                trk.currently_inside = False
-                total_time_spent = time.time() - trk.inside_start_time
+            self.add_time(trk, area)
 
-                if trk.type == 'person':
-                    area.total_time_spent_person += total_time_spent
-                elif trk.type == 'bicycle':
-                    area.total_time_spent_bike += total_time_spent
+        # else:
+        #     if trk.currently_inside == True:
+        #         # this means he was inside but now he is counted as outside
+        #         # count the total time diff from when he went in and now he is leaving out.
+        #         trk.currently_inside = False
+        #         total_time_spent = time.time() - trk.inside_start_time
+        #
+        #         if trk.type == 'person':
+        #             area.total_time_spent_person += total_time_spent
+        #         elif trk.type == 'bicycle':
+        #             print('Time finished for =', trk.id)
+        #             # imsave('myimg.jpg',self.get_sub_frame_using_bounding_box_results(trk.location_history[-1].x,
+        #             #                                                          trk.location_history[-1].y,
+        #             #                                                          trk.bounding_box[0],
+        #             #                                                          trk.bounding_box[1]))
+        #             area.total_time_spent_bike += total_time_spent
 
     def run(self, detections, frame, frame_w, frame_h, timestamp):
 
@@ -325,7 +359,6 @@ class FeatureTracking:
         self.frame = frame
         self.frame_w = frame_w
         self.frame_h = frame_h
-
 
         if len(self.known_objects) == 0 and len(detections) == 0:
             for result in detections:
@@ -349,8 +382,6 @@ class FeatureTracking:
         if len(ghost_known) > 0:
             self.check_ghost_known_objects(ghost_known)
 
-
-
         for area in self.areas:
             if area.closed == True:
                 area.inside = 0
@@ -360,7 +391,7 @@ class FeatureTracking:
                         self.change_area_count(obj, area)
                 else:
                     self.is_inside(obj, area)
-            print('Name =', area.name, 'Inside =', area.inside, 'Outside =', area.outside, 'Counters =', area.counters)
+            print('Name =', area.name, 'Inside =', area.inside, 'Outside =', area.outside, 'Counters+=', area.counters['b_in'], 'Counters-=', area.counters['b_out'])
 
         return self.areas, self.known_objects
 
