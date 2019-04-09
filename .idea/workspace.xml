@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9fd8e19c-6631-49ca-85f1-b6d114e7c1e7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/myimg.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/FeatureTracking.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/FeatureTracking.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myimg.jpg" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -198,6 +195,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1985" y="-4" width="1855" height="1084" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.33406115" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />

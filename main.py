@@ -61,12 +61,12 @@ while True:
                                         frame_height,
                                         time.time())
 
-    # detection_results = []
-    # for result in tracker_results:
-    #     detection_results.append((result.id.encode('utf-8'), 0.0,
-    #                               (result.location_history[-1].x - (result.bounding_box[0]/2), result.location_history[-1].y - (result.bounding_box[1]/2),
-    #                                result.bounding_box[0], result.bounding_box[1])))
-    #     frame = cv2.circle(frame,(int(result.location_history[-1].x),int(result.location_history[-1].y)),5,(255,0,0),5)
+    detection_results = []
+    for result in tracker_results:
+        detection_results.append((result.id.encode('utf-8'), 0.0,
+                                  (result.location_history[-1].x - (result.bounding_box[0]/2), result.location_history[-1].y - (result.bounding_box[1]/2),
+                                   result.bounding_box[0], result.bounding_box[1])))
+        frame = cv2.circle(frame,(int(result.location_history[-1].x),int(result.location_history[-1].y)),5,(255,0,0),5)
 
     frame = utils.draw_detected_objects(frame, detection_results)
     frame = utils.draw_areas_of_interest(frame, areas)
