@@ -1,4 +1,4 @@
-from scipy.misc import imsave
+# from scipy.misc import imsave
 import cv2
 from shapely.geometry import Point
 from shapely.geometry.polygon import Polygon
@@ -7,6 +7,7 @@ import numpy as np
 import time
 import csv
 from core.FeatureTrackingObject import FeatureTrackingObject
+
 class FeatureTracking:
 
 
@@ -14,6 +15,7 @@ class FeatureTracking:
 
 
         self.id = 0
+        self.testid = 0
         self.areas = areas
         self.old_frame = None
 
@@ -157,7 +159,10 @@ class FeatureTracking:
         for i, det in enumerate(detected):
 
             name, probability, x, y, width, height = self.get_params_of_detection(det)
+            # if self.testid == 125 or self.testid == 159:
+            #     imsave('./samples/object_images3/'+str(self.testid)+'.jpg', self.frame)
 
+            self.testid += 1
             features = self.calculatePersonHistograms(x,y,width,height)
 
             for j, known in enumerate(knowns):
@@ -174,7 +179,7 @@ class FeatureTracking:
 
     def find_pairs(self, bhattacharya_matrix):
 
-        bhattacharya_matrix[np.where(bhattacharya_matrix  == 0)] = 0.001
+        bhattacharya_matrix[np.where(bhattacharya_matrix == 0)] = 0.001
         bhattacharya_matrix[np.where(bhattacharya_matrix > 0.35)] = 10
         # get min values in each row
         result = np.multiply(bhattacharya_matrix, bhattacharya_matrix == np.min(bhattacharya_matrix, 1)[:, None])
@@ -391,7 +396,7 @@ class FeatureTracking:
                         self.change_area_count(obj, area)
                 else:
                     self.is_inside(obj, area)
-            print('Name =', area.name, 'Inside =', area.inside, 'Outside =', area.outside, 'Counters+=', area.counters['b_in'], 'Counters-=', area.counters['b_out'])
+            # print('Name =', area.name, 'Inside =', area.inside, 'Outside =', area.outside, 'Counters+=', area.counters['b_in'], 'Counters-=', area.counters['b_out'])
 
         return self.areas, self.known_objects
 

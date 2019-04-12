@@ -9,7 +9,7 @@ __pycache__/
 samples/
 brain/
 .idea/
-
+city-tracks.mp4
 # Distribution / packaging
 .Python
 build/

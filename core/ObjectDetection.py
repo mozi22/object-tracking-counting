@@ -5,7 +5,7 @@ class ObjectDetection:
 
     def __init__(self):
 
-        root = '/app'
+        root = '/home/muazzam/mywork/object-tracking-counting'
 
         configPath  = root + '/brain/yolov3.cfg'
         weightsPath = root + '/brain/yolov3.weights'
